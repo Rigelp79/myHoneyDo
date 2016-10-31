@@ -6,7 +6,20 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Honey-Do-->
+        <!--Honey-Do Categories-->
+        <scene sceneID="39W-W9-7gx">
+            <objects>
+                <tableViewController id="wE5-bg-dJW" customClass="AllHoneydoViewController" customModule="HoneyDo" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" title="Honey-Do Categories" id="fCb-on-Mwl"/>
+                    <connections>
+                        <segue destination="3Rc-HT-8pK" kind="show" identifier="ShowHoneyDoChecklist" id="glA-Lw-gMJ"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fW7-rq-51C" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-157" y="20"/>
+        </scene>
+        <!--Check the Honey-Do's-->
         <scene sceneID="Hea-0D-e3S">
             <objects>
                 <tableViewController id="3Rc-HT-8pK" customClass="honeyDoViewController" customModule="HoneyDo" customModuleProvider="target" sceneMemberID="viewController">
@@ -19,7 +32,7 @@
                                 <rect key="frame" x="0.0" y="92" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2yS-N5-MMA" id="VAn-zp-Ujy">
-                                    <frame key="frameInset" width="308" height="43"/>
+                                    <frame key="frameInset" width="308" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="1775" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cfv-nL-iZa">
@@ -38,6 +51,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="bOx-3f-hGE" kind="presentation" identifier="EditItem" trigger="accessoryAction" id="MCB-Ap-kdv"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -45,7 +61,7 @@
                             <outlet property="delegate" destination="3Rc-HT-8pK" id="vIy-IA-rrn"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Honey-Do" id="So5-f5-kTq">
+                    <navigationItem key="navigationItem" title="Check the Honey-Do's" id="So5-f5-kTq">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="a0K-wn-avR">
                             <connections>
                                 <segue destination="bOx-3f-hGE" kind="presentation" identifier="AddItem" id="6QH-gr-OiI"/>
@@ -57,10 +73,55 @@
             </objects>
             <point key="canvasLocation" x="696.79999999999995" y="16.641679160419791"/>
         </scene>
+        <!--Root View Controller-->
+        <scene sceneID="0iE-am-eeG">
+            <objects>
+                <tableViewController id="FzQ-Xx-enn" customClass="ListDetailViewController" customModule="HoneyDo" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="I08-a7-KHd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="BFQ-Xf-O64">
+                                <rect key="frame" x="0.0" y="92" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BFQ-Xf-O64" id="fqt-b4-O1j">
+                                    <frame key="frameInset" width="375" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="FzQ-Xx-enn" id="Uct-pn-Ot2"/>
+                            <outlet property="delegate" destination="FzQ-Xx-enn" id="mUD-yo-vDO"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="KdA-f0-HeP"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Psa-fg-GZd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="791" y="840"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="INm-p3-cSn">
+            <objects>
+                <navigationController id="FyN-75-ZcT" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Lj4-2H-hZN">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="FzQ-Xx-enn" kind="relationship" relationship="rootViewController" id="LMQ-RR-x4w"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Krk-UG-ms0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-165" y="840"/>
+        </scene>
         <!--Add Items-->
         <scene sceneID="8VL-ld-KKk">
             <objects>
-                <tableViewController id="E5l-8h-mmo" customClass="AddItemViewController" customModule="HoneyDo" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="E5l-8h-mmo" customClass="ItemDetailViewController" customModule="HoneyDo" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="DKu-kF-2rZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -72,7 +133,7 @@
                                         <rect key="frame" x="0.0" y="99" width="375" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iTI-qC-hZI" id="YfV-kB-ikn">
-                                            <frame key="frameInset" width="375" height="49"/>
+                                            <frame key="frameInset" width="375" height="49.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name of Item" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bhH-87-LFC">
@@ -129,12 +190,12 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="3Rc-HT-8pK" kind="relationship" relationship="rootViewController" id="wr8-VV-mid"/>
+                        <segue destination="wE5-bg-dJW" kind="relationship" relationship="rootViewController" id="DmB-bW-Lbb"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c1q-Od-drl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-300" y="16.901408450704224"/>
+            <point key="canvasLocation" x="-1014" y="17"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gge-qZ-eZk">
@@ -155,4 +216,7 @@
             <point key="canvasLocation" x="1496.25" y="16.901408450704224"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="MCB-Ap-kdv"/>
+    </inferredMetricsTieBreakers>
 </document>

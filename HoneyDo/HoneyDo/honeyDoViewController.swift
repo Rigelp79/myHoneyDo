@@ -8,44 +8,20 @@
 
 import UIKit
 
-class honeyDoViewController: UITableViewController, AddItemViewControllerDelegate {
+class honeyDoViewController: UITableViewController, ItemDetailViewControllerDelegate {
     var items: [HoneydolistItem]  // <- declares that items of array will hold HoneydolistItems objects but doesn't give them value
+    var checklist: HoneyDoCategories!
     
     required init?(coder aDecoder: NSCoder) {
         
         items = [HoneydolistItem]() // <- instantiates (to represent 'an abstraction' by a concrete instance) the array. Has no HoneydolistItem objects yet.
-        
-        let row0item = HoneydolistItem() // <- instantiates a new HoneydolistItem object
-        row0item.text = "Cut the grass" // <- gives value to the data items (.text and .checked)
-        row0item.checked = false
-        items.append(row0item) // <- adds the HoneydolistItem object to the array
-        
-        let row1item = HoneydolistItem()
-        row1item.text = "Rake the yard"
-        row1item.checked = true
-        items.append(row1item)
-        
-        let row2item = HoneydolistItem()
-        row2item.text = "Learn a new poem"
-        row2item.checked = true
-        items.append(row2item)
-        
-        let row3item = HoneydolistItem()
-        row3item.text = "Read a story to the kids"
-        row3item.checked = false
-        items.append(row3item)
-        
-        let row4item = HoneydolistItem()
-        row4item.text = "Watch a movie"
-        row4item.checked = true
-        items.append(row4item)
-        
         super.init(coder: aDecoder)
-        
-    }
+        loadHoneydolistItems()
+        }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = checklist.name
         // Do any additional setup after loading the view, typically from a nib.
         //self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
@@ -79,6 +55,7 @@ class honeyDoViewController: UITableViewController, AddItemViewControllerDelegat
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
+        saveHoneydolistItems()
     }
     
     /*override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -89,13 +66,24 @@ class honeyDoViewController: UITableViewController, AddItemViewControllerDelegat
         items.remove(at: indexPath.row) // this function has the button basically built into it. No need to add the button
         let indexPaths = [indexPath]
         tableView.deleteRows(at: indexPaths, with: .automatic)
+        saveHoneydolistItems()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "AddItem" {
             let navigationController = segue.destination as! UINavigationController
-            let controller = navigationController.topViewController as! AddItemViewController
+            let controller = navigationController.topViewController as! ItemDetailViewController
             controller.delegate = self
+        } else if segue.identifier == "EditItem" {
+            
+            let navigationController = segue.destination as! UINavigationController
+            let controller = navigationController.topViewController as! ItemDetailViewController
+            controller.delegate = self
+            
+            if let indexPath = tableView.indexPath(for: sender as! UITableViewCell) {
+                controller.itemToEdit = items[indexPath.row]
+            }
+            
         }
     }
     
@@ -114,11 +102,11 @@ class honeyDoViewController: UITableViewController, AddItemViewControllerDelegat
         label.text = item.text
     }
     
-    func addItemViewControllerDidCancel(_ controller: AddItemViewController) {
+    func itemDetailViewControllerDidCancel(_ controller: ItemDetailViewController) {
         dismiss(animated: true, completion: nil)
     }
     
-    func addItemViewController(_ controller: AddItemViewController, didFinishAdding item: HoneydolistItem) {
+    func itemDetailViewController(_ controller: ItemDetailViewController, didFinishAdding item: HoneydolistItem) {
         let newRowIndex = items.count
         items.append(item)
         
@@ -127,8 +115,48 @@ class honeyDoViewController: UITableViewController, AddItemViewControllerDelegat
         tableView.insertRows(at: indexPaths, with: .automatic)
         
         dismiss(animated: true, completion: nil)
+        saveHoneydolistItems()
     }
     
+    func itemDetailViewController(_ controller: ItemDetailViewController, didFinishEditing item: HoneydolistItem) {
+        if let index = items.index(of: item) {
+            let indexPath = IndexPath(row: index, section: 0)
+            if let cell = tableView.cellForRow(at: indexPath) {
+                configureText(for: cell, with: item)
+                
+            }
+        }
+        
+        dismiss(animated: true, completion: nil)
+        saveHoneydolistItems()
+    }
+    
+    func documentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
+    }
+    
+    func dataFilePath() -> URL {
+        return documentsDirectory().appendingPathComponent("Checklists.plist")
+    }
+    
+    func saveHoneydolistItems() {
+        let data = NSMutableData()
+        let archiver = NSKeyedArchiver(forWritingWith: data)
+        archiver.encode(items, forKey: "HoneydolistItems")
+        archiver.finishEncoding()
+        data.write(to: dataFilePath(), atomically: true)
+    }
+    
+    func loadHoneydolistItems() {
+        let path = dataFilePath()
+        if let data = try? Data(contentsOf: path) {
+            let unarchiver = NSKeyedUnarchiver(forReadingWith: data)
+            items = unarchiver.decodeObject(forKey: "HoneydolistItems") as! [HoneydolistItem]
+            
+            unarchiver.finishDecoding()
+        }
+    }
     
 }
 

@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E43CA7F1DC6792A00E818E3 /* HoneyDoCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E43CA7E1DC6792A00E818E3 /* HoneyDoCategories.swift */; };
+		0E43CA811DC6D05900E818E3 /* ListDetailHoneyDoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E43CA801DC6D05900E818E3 /* ListDetailHoneyDoViewController.swift */; };
 		0E745F6C1DC1609000F3C7C9 /* HoneyDo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E745F6B1DC1609000F3C7C9 /* HoneyDo.swift */; };
-		0E745F6E1DC2814B00F3C7C9 /* AddHoneydoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E745F6D1DC2814B00F3C7C9 /* AddHoneydoItem.swift */; };
+		0E745F6E1DC2814B00F3C7C9 /* ItemDetailHoneyDoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E745F6D1DC2814B00F3C7C9 /* ItemDetailHoneyDoViewController.swift */; };
+		0E77769B1DC63D35003A416B /* AllHoneydoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E77769A1DC63D35003A416B /* AllHoneydoViewController.swift */; };
 		0EA583641DBF939F00740CB0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA583631DBF939F00740CB0 /* AppDelegate.swift */; };
 		0EA583661DBF939F00740CB0 /* honeyDoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA583651DBF939F00740CB0 /* honeyDoViewController.swift */; };
 		0EA583691DBF939F00740CB0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EA583671DBF939F00740CB0 /* Main.storyboard */; };
@@ -17,11 +20,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0E43CA7E1DC6792A00E818E3 /* HoneyDoCategories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HoneyDoCategories.swift; sourceTree = "<group>"; };
+		0E43CA801DC6D05900E818E3 /* ListDetailHoneyDoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListDetailHoneyDoViewController.swift; sourceTree = "<group>"; };
 		0E745F6B1DC1609000F3C7C9 /* HoneyDo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HoneyDo.swift; sourceTree = "<group>"; };
-		0E745F6D1DC2814B00F3C7C9 /* AddHoneydoItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddHoneydoItem.swift; sourceTree = "<group>"; };
+		0E745F6D1DC2814B00F3C7C9 /* ItemDetailHoneyDoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ItemDetailHoneyDoViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		0E77769A1DC63D35003A416B /* AllHoneydoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllHoneydoViewController.swift; sourceTree = "<group>"; };
 		0EA583601DBF939F00740CB0 /* HoneyDo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HoneyDo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EA583631DBF939F00740CB0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0EA583651DBF939F00740CB0 /* honeyDoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = honeyDoViewController.swift; sourceTree = "<group>"; };
+		0EA583651DBF939F00740CB0 /* honeyDoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = honeyDoViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0EA583681DBF939F00740CB0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0EA5836A1DBF939F00740CB0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0EA5836D1DBF939F00740CB0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -65,7 +71,10 @@
 				0EA5836C1DBF939F00740CB0 /* LaunchScreen.storyboard */,
 				0EA5836F1DBF939F00740CB0 /* Info.plist */,
 				0E745F6B1DC1609000F3C7C9 /* HoneyDo.swift */,
-				0E745F6D1DC2814B00F3C7C9 /* AddHoneydoItem.swift */,
+				0E745F6D1DC2814B00F3C7C9 /* ItemDetailHoneyDoViewController.swift */,
+				0E77769A1DC63D35003A416B /* AllHoneydoViewController.swift */,
+				0E43CA7E1DC6792A00E818E3 /* HoneyDoCategories.swift */,
+				0E43CA801DC6D05900E818E3 /* ListDetailHoneyDoViewController.swift */,
 			);
 			path = HoneyDo;
 			sourceTree = "<group>";
@@ -143,9 +152,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				0E745F6C1DC1609000F3C7C9 /* HoneyDo.swift in Sources */,
-				0E745F6E1DC2814B00F3C7C9 /* AddHoneydoItem.swift in Sources */,
+				0E745F6E1DC2814B00F3C7C9 /* ItemDetailHoneyDoViewController.swift in Sources */,
+				0E43CA7F1DC6792A00E818E3 /* HoneyDoCategories.swift in Sources */,
 				0EA583661DBF939F00740CB0 /* honeyDoViewController.swift in Sources */,
+				0E43CA811DC6D05900E818E3 /* ListDetailHoneyDoViewController.swift in Sources */,
 				0EA583641DBF939F00740CB0 /* AppDelegate.swift in Sources */,
+				0E77769B1DC63D35003A416B /* AllHoneydoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
