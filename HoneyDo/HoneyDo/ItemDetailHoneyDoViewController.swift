@@ -5,6 +5,7 @@
 //  Created by Rigel Preston on 10/27/16.
 //  Copyright © 2016 Rigel Preston. All rights reserved.
 //
+
 import Foundation
 import UIKit
 
@@ -20,6 +21,7 @@ class ItemDetailViewController: UITableViewController, UITextFieldDelegate{
     @IBOutlet weak var saveBarButton: UIBarButtonItem!
     
     weak var delegate: ItemDetailViewControllerDelegate?
+    
     var itemToEdit: HoneydolistItem?
     
     override func viewDidLoad() {
@@ -58,12 +60,11 @@ class ItemDetailViewController: UITableViewController, UITextFieldDelegate{
     @IBAction func save() {
         if let item = itemToEdit{
             item.text = textField.text!
-            delegate?.itemDetailViewController(self, didFinishAdding: item)
+            delegate?.itemDetailViewController(self, didFinishEditing: item)
         } else {
             let item =  HoneydolistItem()
             item.text = textField.text!
             item.checked = false
-            
             delegate?.itemDetailViewController(self, didFinishAdding: item)
         }
     }

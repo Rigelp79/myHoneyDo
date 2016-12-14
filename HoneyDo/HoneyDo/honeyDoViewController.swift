@@ -34,6 +34,7 @@ class honeyDoViewController: UITableViewController, ItemDetailViewControllerDele
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }
+     // Both #ofrows and cellforRow take two parameters and returns a value to the caller. These are Data Sources, the link between you data and the tableview. Once it is hooked up to a data source – your view controller – the table view sends a “numberOfRowsInSection” message to find out how many rows there are. And when the table view needs to draw a particular row on the screen it sends the “cellForRowAt” message to ask the data source for a cell.
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "HoneydolistItem", for: indexPath)
@@ -106,18 +107,6 @@ class honeyDoViewController: UITableViewController, ItemDetailViewControllerDele
         dismiss(animated: true, completion: nil)
     }
     
-    func itemDetailViewController(_ controller: ItemDetailViewController, didFinishAdding item: HoneydolistItem) {
-        let newRowIndex = items.count
-        items.append(item)
-        
-        let indexPath = IndexPath(row: newRowIndex, section: 0)
-        let indexPaths = [indexPath]
-        tableView.insertRows(at: indexPaths, with: .automatic)
-        
-        dismiss(animated: true, completion: nil)
-        saveHoneydolistItems()
-    }
-    
     func itemDetailViewController(_ controller: ItemDetailViewController, didFinishEditing item: HoneydolistItem) {
         if let index = items.index(of: item) {
             let indexPath = IndexPath(row: index, section: 0)
@@ -130,6 +119,19 @@ class honeyDoViewController: UITableViewController, ItemDetailViewControllerDele
         dismiss(animated: true, completion: nil)
         saveHoneydolistItems()
     }
+    
+    func itemDetailViewController(_ controller: ItemDetailViewController, didFinishAdding item: HoneydolistItem) {
+        let newRowIndex = items.count
+        items.append(item)
+        
+        let indexPath = IndexPath(row: newRowIndex, section: 0)
+        let indexPaths = [indexPath]
+        tableView.insertRows(at: indexPaths, with: .automatic)
+        
+        dismiss(animated: true, completion: nil)
+        saveHoneydolistItems()
+    }
+
     
     func documentsDirectory() -> URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)

@@ -42,6 +42,7 @@ class ListDetailViewController: UITableViewController, UITextFieldDelegate {
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
         let oldText = textField.text! as NSString
         let newText = oldText.replacingCharacters(in: range, with: string) as NSString
         doneBarButton.isEnabled = (newText.length > 0)
@@ -63,6 +64,5 @@ class ListDetailViewController: UITableViewController, UITextFieldDelegate {
             delegate?.listDetailViewController(self, didFinishAdding: checklist)
         }
     }
-
 }
 

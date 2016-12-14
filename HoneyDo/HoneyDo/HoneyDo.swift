@@ -12,6 +12,8 @@ class HoneydolistItem: NSObject, NSCoding {
     var text = ""
     var checked = false
     
+    
+    
     required init?(coder aDecoder: NSCoder) {
         text = aDecoder.decodeObject(forKey: "Text") as! String
         checked = aDecoder.decodeBool(forKey: "Checked")
@@ -30,6 +32,7 @@ class HoneydolistItem: NSObject, NSCoding {
         aCoder.encode(text, forKey: "Text")
         aCoder.encode(checked, forKey: "Checked")
     }
+    
 }
 
 
